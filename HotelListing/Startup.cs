@@ -30,7 +30,7 @@ namespace HotelListing
             services.AddControllers();
 
             //CORS significa -> Cross Origin Resource Sharing, que define o quão retrito é a partilha de acessos e requests
-            //basicamente, se alguém fora da minha empresa, por exemplo, quiser aceder à API, o CORS pode bloquear o mesmo
+            //basicamente, se alguém fora da minha empresa, por exemplo, quiser aceder à API, o CORS pode bloquear esse mesmo utilizador
             services.AddCors(x => {
                 x.AddPolicy("AllowAll", builder =>
                 builder.AllowAnyOrigin()
