@@ -1,7 +1,9 @@
+using HotelListing.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,11 +28,14 @@ namespace HotelListing
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
+            //aqui vamos inicializar a connection string, onde colocamos o nome da connection string que tá no appsettings.json
+            services.AddDbContext<DatabaseContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))
+            );
 
             //CORS significa -> Cross Origin Resource Sharing, que define o quão retrito é a partilha de acessos e requests
             //basicamente, se alguém fora da minha empresa, por exemplo, quiser aceder à API, o CORS pode bloquear esse mesmo utilizador
+            //em baixo permitimos qualquer pessoa aceder a qualquer método e que mandem qualquer header
             services.AddCors(x => {
                 x.AddPolicy("AllowAll", builder =>
                 builder.AllowAnyOrigin()
@@ -43,6 +48,9 @@ namespace HotelListing
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelListing", Version = "v1" });
             });
+
+            services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
