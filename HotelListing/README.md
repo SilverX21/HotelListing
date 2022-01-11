@@ -40,3 +40,5 @@ A base de dados irá ficar disponível depois de correr o update-database, que est
 
 Se quiser remover a migration, tenho de fazer: Remove-Migration
 Mas para remover a migration, não posso ter feito o update-database
+
+10- De seguida criamos o IRepository e o Repository, onde vamos utiliar DI
