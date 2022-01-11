@@ -1,3 +1,4 @@
+using HotelListing.Configurations;
 using HotelListing.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +43,9 @@ namespace HotelListing
                 .AllowAnyMethod()
                 .AllowAnyHeader());
             });
+
+            //configuração do AutoMapper
+            services.AddAutoMapper(typeof(MapperInitializer));
 
             //aqui em baixo estamos a configurar o swagger (agora vem incluido quando criamos uma API!)
             services.AddSwaggerGen(c =>

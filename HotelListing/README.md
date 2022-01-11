@@ -42,3 +42,11 @@ Se quiser remover a migration, tenho de fazer: Remove-Migration
 Mas para remover a migration, não posso ter feito o update-database
 
 10- De seguida criamos o IRepository e o Repository, onde vamos utiliar DI
+
+11- de Seguida criamos o IUnitOfWork e o UnitOfWork
+
+12- o próximo passo é criar as DTOs para os países e para os hotéis
+
+13- Instalamos o package AutoMapper.Extensions.Microsoft.DependencyInjection 
+depois temos de colocar no startup para que seja logo inicializado quando a API iniciar
+
