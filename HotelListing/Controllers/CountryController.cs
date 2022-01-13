@@ -27,6 +27,8 @@ namespace HotelListing.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCountries()
         {
             try
@@ -45,10 +47,14 @@ namespace HotelListing.Controllers
 
         //[HttpGet("{id:int}")] => Aqui estou a especificar que espero um parâmetro chamado "id" e que é do tipo int
         [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCountry(int id)
         {
             try
             {
+                //colocamos o list, na chamada de baixo, para que ele inclua os hotéis que o país tem
+                //se não mandarmos ele não vai incluir os hotéis que possui, por isso é que chamamos de includes a este campo no Rep. Genérico
                 var country = await _unitOfWork.Countries.Get(q => q.Id == id, new List<string> { "Hotels" });
                 //na linha a seguir fazemos o mapeamento para a DTO
                 var result = _mapper.Map<CountryDTO>(country);
