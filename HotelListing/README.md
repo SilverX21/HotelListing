@@ -22,6 +22,7 @@ utilizar
 	- Microsoft.EntityFrameworkCore
 	- Microsoft.EntityFrameworkCore.SqlServer
 	- Microsoft.EntityFrameworkCore.Tools
+	- Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
 7- depois vamos ao appsettings.json e incluímos a connection string para criar a ligação à nossa base de dados
 	-> colocamos "server=(localdb)\\mssqllocaldb" para apontar para a base de dados local do VS, caso queira ligar a outra
@@ -50,3 +51,8 @@ Mas para remover a migration, não posso ter feito o update-database
 13- Instalamos o package AutoMapper.Extensions.Microsoft.DependencyInjection 
 depois temos de colocar no startup para que seja logo inicializado quando a API iniciar
 
+14- Criamos o MapperInitializer, para que o automapper possa fazer a passagem do models para as DTOs
+
+15- Criamos o CountryController para podermos começar a fazer pedidos
+
+16- vamos adicionar a DI no startup, onde colocamos os AddTransient e etc

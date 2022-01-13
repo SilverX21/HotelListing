@@ -1,5 +1,7 @@
 using HotelListing.Configurations;
 using HotelListing.Data;
+using HotelListing.IRepository;
+using HotelListing.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,14 +32,15 @@ namespace HotelListing
         public void ConfigureServices(IServiceCollection services)
         {
             //aqui vamos inicializar a connection string, onde colocamos o nome da connection string que tá no appsettings.json
-            services.AddDbContext<DatabaseContext>(options => 
+            services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))
             );
 
             //CORS significa -> Cross Origin Resource Sharing, que define o quão retrito é a partilha de acessos e requests
             //basicamente, se alguém fora da minha empresa, por exemplo, quiser aceder à API, o CORS pode bloquear esse mesmo utilizador
             //em baixo permitimos qualquer pessoa aceder a qualquer método e que mandem qualquer header
-            services.AddCors(x => {
+            services.AddCors(x =>
+            {
                 x.AddPolicy("AllowAll", builder =>
                 builder.AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -47,13 +50,19 @@ namespace HotelListing
             //configuração do AutoMapper
             services.AddAutoMapper(typeof(MapperInitializer));
 
+            //aqui vamos adicionar a DI para o projeto inteiro
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
             //aqui em baixo estamos a configurar o swagger (agora vem incluido quando criamos uma API!)
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelListing", Version = "v1" });
             });
 
-            services.AddControllers();
+            //Adicionamos o AddNewtonsoftJson para controlar as coisas referentes à serilization
+            services.AddControllers().AddNewtonsoftJson(op =>
+                op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
         }
 

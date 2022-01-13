@@ -98,7 +98,7 @@ namespace HotelListing.Repository
             await _db.AddRangeAsync(entities);
         }
 
-        public async void Update(T entity)
+        public void Update(T entity)
         {
             //o attach basicamente diz à base de dados para prestar atenção a este registo e alterar caso encontre algo diferente
             _db.Attach(entity);
