@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelListing.Data
 {
-    public class DatabaseContext : DbContext
+    //por defeito vai usar o ApiUser para o Identity
+    public class DatabaseContext : IdentityDbContext<ApiUser>
     {
         public DatabaseContext(DbContextOptions options) : base(options)
         {
@@ -20,6 +22,8 @@ namespace HotelListing.Data
         //aqui fazemos o seed da base de dados para ter uns dados iniciais para testar
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<Country>().HasData(
                 new Country
                 {

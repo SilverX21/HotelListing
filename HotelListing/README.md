@@ -56,3 +56,9 @@ depois temos de colocar no startup para que seja logo inicializado quando a API 
 15- Criamos o CountryController para podermos começar a fazer pedidos
 
 16- vamos adicionar a DI no startup, onde colocamos os AddTransient e etc
+
+17- de seguida instalamos o package: Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+18- alteramos o nosso DbContext para receber um IndetityDbContext
+
+19- criamos a classe ServiceExtensions.cs e passamos lá os detalhes do identity, para depois chamarmos no startup.cs

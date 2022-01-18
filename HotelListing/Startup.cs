@@ -5,6 +5,7 @@ using HotelListing.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,10 @@ namespace HotelListing
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))
             );
+
+            //aqui utilizaos os serviços para a autenticação
+            services.AddAuthentication();
+            services.ConfigureIdentity(); //este método está no ServiceExtensions.cs, criado aqui no projeto
 
             //CORS significa -> Cross Origin Resource Sharing, que define o quão retrito é a partilha de acessos e requests
             //basicamente, se alguém fora da minha empresa, por exemplo, quiser aceder à API, o CORS pode bloquear esse mesmo utilizador
