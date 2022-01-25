@@ -34,7 +34,7 @@ namespace HotelListing
         {
             //aqui vamos inicializar a connection string, onde colocamos o nome da connection string que tá no appsettings.json
             services.AddDbContext<DatabaseContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))//.EnableSensitiveDataLogging()
             );
 
             //aqui utilizaos os serviços para a autenticação

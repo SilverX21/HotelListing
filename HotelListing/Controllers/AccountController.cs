@@ -50,6 +50,7 @@ namespace HotelListing.Controllers
                     return BadRequest(ModelState);
                 }
 
+                await _userManager.AddToRolesAsync(user, userDTO.Roles);
                 return Accepted(); //o accepted informa que foi aceite o pedido
             }
             catch (Exception ex)

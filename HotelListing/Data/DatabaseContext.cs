@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using HotelListing.Configurations.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,53 +25,11 @@ namespace HotelListing.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Country>().HasData(
-                new Country
-                {
-                    Id = 1,
-                    Name = "Portugal",
-                    ShortName = "PT"
-                },
-                new Country
-                {
-                    Id = 2,
-                    Name = "Espanha",
-                    ShortName = "ES"
-                },
-                new Country
-                {
-                    Id = 3,
-                    Name = "Suíça",
-                    ShortName = "SUI"
-                }
-            );
-
-            builder.Entity<Hotel>().HasData(
-                new Hotel
-                {
-                    Id = 1,
-                    Name = "Hotel Turismo Realense",
-                    Address = "Rua do Aço",
-                    CountryId = 1,
-                    Rating = 4.9
-                },
-                new Hotel
-                {
-                    Id = 2,
-                    Name = "Hotel Pirâmide",
-                    Address = "Avenida de Sanxenxo",
-                    CountryId = 2,
-                    Rating = 4.4
-                },
-                new Hotel
-                {
-                    Id = 3,
-                    Name = "Hotel Kandersteg",
-                    Address = "Rua de Kandersteg Escutista",
-                    CountryId = 3,
-                    Rating = 4.8
-                }
-            );
+            //em baixo vamos usar as classes para fazer seed da base de dados
+            //builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new CountryConfiguration());
+            builder.ApplyConfiguration(new HotelConfiguration());
+            
         }
         #endregion
     }
