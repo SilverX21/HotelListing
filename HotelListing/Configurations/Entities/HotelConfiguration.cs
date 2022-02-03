@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace HotelListing.Configurations.Entities
 {
-    public class HotelConfiguration : IEntityTypeConfiguration<IdentityRole>
+    public class HotelConfiguration : IEntityTypeConfiguration<Hotel>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole> builder)
+        public void Configure(EntityTypeBuilder<Hotel> builder)
         {
             builder.HasData(
                 new Hotel { Id = 1, Name = "Hotel Turismo Realense", Address = "Rua do Aço", CountryId = 1, Rating = 4.9 },

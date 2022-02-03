@@ -26,11 +26,13 @@ namespace HotelListing.Data
             base.OnModelCreating(builder);
 
             //em baixo vamos usar as classes para fazer seed da base de dados
-            //builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new CountryConfiguration());
             builder.ApplyConfiguration(new HotelConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
             
         }
         #endregion
     }
 }
+
+

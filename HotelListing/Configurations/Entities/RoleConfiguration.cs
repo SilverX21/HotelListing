@@ -13,8 +13,16 @@ namespace HotelListing.Configurations.Entities
         public void Configure(EntityTypeBuilder<IdentityRole> builder)
         {
             builder.HasData(
-                new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" },
-                new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "Administrator", NormalizedName = "ADMINISTRATOR" }
+                new IdentityRole
+                {
+                    Name = "User",
+                    NormalizedName = "USER"
+                },
+                new IdentityRole
+                {
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
+                }
             );
         }
     }

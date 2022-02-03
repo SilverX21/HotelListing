@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace HotelListing.Configurations.Entities
 {
-    public class CountryConfiguration : IEntityTypeConfiguration<IdentityRole>
+    public class CountryConfiguration : IEntityTypeConfiguration<Country>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole> builder)
+        public void Configure(EntityTypeBuilder<Country> builder)
         {
             builder.HasData(
                 new Country { Id = 1, Name = "Portugal", ShortName = "PT" },
